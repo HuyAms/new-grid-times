@@ -75,11 +75,11 @@ const ActionGroup = styled.div`
   }
 `;
 
-const DesktopActionGroup = styled.div`
+const DesktopActionGroup = styled(ActionGroup)`
   display: none;
 
 @media ${QUERIES.laptopAndUp} {
-  display: block;
+  display: flex;
 }
 `
 
