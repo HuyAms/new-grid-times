@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import { QUERIES } from '../../constants';
 
 import {
   MAIN_STORY,
@@ -30,11 +31,11 @@ const MainStoryGrid = () => {
 
       <OpinionSection>
         <SectionTitle>Opinion</SectionTitle>
-        <StoryList>
+        <OpinionList>
           {OPINION_STORIES.map((story, index) => (
             <OpinionStory key={story.id} {...story} />
           ))}
-        </StoryList>
+        </OpinionList>
       </OpinionSection>
 
       <AdvertisementSection>
@@ -53,6 +54,20 @@ const Wrapper = styled.div`
     'advertisement';
   gap: 48px;
   margin-bottom: 48px;
+
+  @media ${QUERIES.tabletAndUp} {
+    grid-template-areas:
+    'main-story secondary-stories'
+    'advertisement advertisement'
+    'opinion-stories opinion-stories';
+  }
+
+  @media ${QUERIES.laptopAndUp} {
+    grid-template-areas:
+    'main-story secondary-stories opinion-stories'
+    'main-story secondary-stories opinion-stories'
+    'main-story advertisement advertisement';
+  }
 `;
 
 const MainStorySection = styled.section`
@@ -67,6 +82,15 @@ const StoryList = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+const OpinionList = styled.div`
+  display: grid;
+  grid-gap: 32px;
+
+  @media ${QUERIES.tabletOnly} {
+    grid-template-columns: repeat(4, 1fr);
+  }
+`
 
 const OpinionSection = styled.section`
   grid-area: opinion-stories;
